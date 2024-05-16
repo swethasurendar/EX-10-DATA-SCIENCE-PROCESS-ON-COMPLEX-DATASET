@@ -1,90 +1,147 @@
-# EX-10-DATA-SCIENCE-PROCESS-ON-COMPLEX-DATASET
-# AIM
-To Perform Data Science Process on a complex dataset and save the data to a file.
+## EX-10 Project Responsive Web Design using Bootstrap
+## Date:
 
-# ALGORITHM
-STEP 1
-Read the given Data
+## AIM:
+To design a responsive website for a Pharmaceutical Company using Bootstrap.
 
-STEP 2
-Clean the Data Set using Data Cleaning Process
 
-STEP 3
-Apply Feature Generation/Feature Selection Techniques on the data set
+## DESIGN STEPS:
 
-STEP 4
-Apply EDA /Data visualization techniques to all the features of the data set
+### Step 1:
+Clone the repository from GitHub.
 
-# PROGRAM
+### Step 2:
+Create Django Admin project.
+
+### Step 3:
+Create a New App under the Django Admin project.
+
+### Step 4:
+Insert the necessary CSS and JavaScript files as external in order to use Bootstrap.
+
+### Step 5:
+Create a HTML file and include the needed Bootstrap components.
+
+### Step 6:
+Publish the website in the LocalHost.
+
+## PROGRAM :
 ```
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Science Software Products - Company Name</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        text-align: center;
+    }
+    h1, h2 {
+        margin: 20px 0;
+    }
+    .product {
+        background-color: #fff;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .product img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+    .product-details {
+        margin-top: 20px;
+    }
+    .product-details p {
+        margin-bottom: 10px;
+    }
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+    .btn:hover {
+        background-color: #0056b3;
+    }
+    footer{
+    background-color: hsla(240, 87%, 32%, 0.616);
+    color: papayawhip;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    bottom: 0%;
+    width: 100%;
+}
+</style>
+</head>
+<body>
 
-# Load the dataset
-df = pd.read_csv("world_pop.csv")
+<header>
+    <h1>Data Science Software Products</h1>
+</header>
 
-# Data Cleaning
-# Check for missing values
-print(df.isnull().sum())
+<div class="container">
+    <div class="product">
+        <h2>REDaxis</h2>
+        <img src="Products-1.png" alt="Product 1">
+        <div class="product-details">
+            <p>Description: A Design Thinking approach to problem-solving and identification of the most lucrative business opportunities. Powered by Fosfor , solutions developed for ERP customers, specializing in streamlined data sourcing and simplification of data development.</p>
+            <p>Features:</p>
+            <ul>
+                <li>Context / Role-based Analytics Insights through Dashboards/Reports.</li>
+                <li>Enhanced User Experience through advanced visualizations and Mobile BI.</li>
+                <li>Executive Insights highlighting priorities among the Business As Usuals.</li>
+            </ul>
+            <a href="#" class="btn">Learn More</a>
+        </div>
+    </div>
 
-# Remove duplicates, if any
-df = df.drop_duplicates()
+    <div class="product">
+        <h2>Unitrax</h2>
+        <img src="Products-2.png" alt="Product 2">
+        <img src="Products-3.png" alt="">
+        <div class="product-details">
+            <p>Description: Single version system auto-switching and household assettiering capabilities. Built-in, robust indexing capabilities, to extract records for a user-defined date, promptly upon request.</p>
+            <p>Features:</p>
+            <ul>
+                <li>Built for 360o administration of insurance wealth products.</li>
+                <li>Streamlines administration of a wide range of investment vehicles.</li>
+                <li>Supports all Canadian registration types (e.g. RDSP, RESP, TFSA, RRIF, LIF, RRSP, IPP).</li>
+            </ul>
+            <a href="#" class="btn">Learn More</a>
+        </div>
+    </div>
+</div>
+<footer>
+    <p>&copy;2024 SWETHA S All rights reserved</p>
+  </footer>
 
-# Handling missing values
-# Assuming missing values as 0 (if appropriate)
-df = df.fillna(0)
-
-# Feature Selection
-# Select columns for analysis
-cols_to_keep = ['country', 'year_1960', 'year_1970', 'year_1980', 'year_1990', 'year_2000', 'year_2010', 'year_2020']
-df_selected = df[cols_to_keep].copy()
-
-# Feature Generation
-# Calculate average population growth rate
-df_selected['Average_Growth_Rate'] = df_selected.iloc[:, 1:-1].mean(axis=1).pct_change() * 100
-
-# Exploratory Data Analysis (EDA)
-# Compute the total population for each year
-df_selected['Total_Population'] = df_selected.iloc[:, 1:].sum(axis=1)
-
-# Bar plot of population over the years
-plt.figure(figsize=(10, 6))
-years = df_selected.columns[1:-2]
-total_population = df_selected[years].sum()
-plt.bar(years, total_population)
-plt.xlabel('Year')
-plt.ylabel('Population')
-plt.title('Population Over the Years')
-plt.xticks(rotation='vertical')
-plt.show()
-
-# Line chart of average population over the years
-plt.figure(figsize=(10, 6))
-years = df_selected.columns[1:-2]
-average_population = df_selected[years].mean()
-plt.plot(years, average_population, marker='o')
-plt.xlabel('Year')
-plt.ylabel('Average Population')
-plt.title('Average Population Over the Years')
-plt.xticks(rotation='vertical')
-plt.show()
-
-# Bar plot of top 10 countries by population in 2020
-df_selected['Total_Population_2020'] = df_selected['year_2020']
-top_10_countries = df_selected.nlargest(10, 'Total_Population_2020')
-plt.figure(figsize=(10, 6))
-sns.barplot(x='Total_Population_2020', y='country', data=top_10_countries, palette='viridis')
-plt.xlabel('Population in 2020')
-plt.ylabel('Country')
-plt.title('Top 10 Countries by Population in 2020')
-plt.show()
+</body>
+</html>
 ```
-# OUTPUT
-![image](https://github.com/swethasurendar/EX-10-DATA-SCIENCE-PROCESS-ON-COMPLEX-DATASET/assets/133625914/b86c8622-935a-4fb3-aa95-26f089053cb9)
-![image](https://github.com/swethasurendar/EX-10-DATA-SCIENCE-PROCESS-ON-COMPLEX-DATASET/assets/133625914/dc68723b-6997-44a0-bea9-24c55677ed3d)
-![image](https://github.com/swethasurendar/EX-10-DATA-SCIENCE-PROCESS-ON-COMPLEX-DATASET/assets/133625914/41174718-5e56-47e4-9594-6ba3ba04142b)
+## OUTPUT:
 
-# RESULT
-Thus, to Perform Data Science Process on a complex dataset and save the data to a file has been performed successfully.
+![image](https://github.com/Isreal129/Pharma/assets/125784931/42216e9e-5a02-4980-8a0d-4a5d756c7212)
+
+## RESULT:
+The Project for responsive web design using Bootstrap is completed successfully.
